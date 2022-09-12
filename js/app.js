@@ -48,6 +48,7 @@ const addToCart = (id, price) => {
    updatePrice("price", price);
    // console.log(updatePrice(id, price))
    updateTaxAndCharge();
+   updateTotal()
    document.getElementById('total-Products').innerText = count;
 };
 
@@ -69,16 +70,18 @@ const showProductDetailsInModal = (product_details) => {
 const getInputValue = (id) => {
    const element = document.getElementById(id).innerText;
    // console.log(element)
-   const converted = parseInt(element);
+   const converted = parseFloat(element);
    return converted;
 };
 
 // main price update function
 const updatePrice = (id, value) => {
    const convertedOldPrice = getInputValue(id);
-   const convertPrice = parseInt(value);
-   const total = convertedOldPrice + convertPrice;
-   document.getElementById(id).innerText = Math.round(total);
+   const convertPrice = parseFloat(value);
+   const totalNotLimit = convertedOldPrice + convertPrice;
+   const totalToFixed = totalNotLimit.toFixed(2);
+   const total = parseFloat(totalToFixed)
+   document.getElementById(id).innerText = total;
 };
 
 // set innerText function
@@ -105,10 +108,12 @@ const updateTaxAndCharge = () => {
 
 //grandTotal update function
 const updateTotal = () => {
-   const grandTotal =
+   const grandTotalNotFixed =
       getInputValue('price') +
       getInputValue('delivery-charge') +
       getInputValue('total-tax');
+   const grandTotalToFixed = grandTotalNotFixed.toFixed(2);
+   const grandTotal = parseFloat(grandTotalToFixed)
    document.getElementById('total').innerText = grandTotal;
 };
 
