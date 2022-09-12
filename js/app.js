@@ -135,3 +135,10 @@ const search = ()=>{
    showProducts(searchedProduct);
  };
 
+// add the enter key event
+
+document.getElementById('input-value').addEventListener('keydown', (e)=>{
+   if (e.key === 'Enter') {
+      search()
+   }
+})
