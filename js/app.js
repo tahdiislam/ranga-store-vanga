@@ -53,17 +53,17 @@ const addToCart = (id, price) => {
 };
 
 const showProductDetails = (product_id) => {
-   console.log(product_id);
+   // console.log(product_id);
    fetch(`https://fakestoreapi.com/products/${product_id}`)
       .then((res) => res.json())
       .then((data) => showProductDetailsInModal(data));
 };
 
 const showProductDetailsInModal = (product_details) => {
-   // console.log(product_details);
+   console.table(product_details);
    setInnerText('exampleModalLabel', product_details.title);
-   setInnerText('product_id', product_details.id);
-   setInnerText('modal_body', product_details.description);
+   setInnerText("productId", product_details.id);
+   setInnerText("modal_body", product_details.description);
    setInnerText('rating', product_details.rating.rate);
 };
 
@@ -86,7 +86,10 @@ const updatePrice = (id, value) => {
 
 // set innerText function
 const setInnerText = (id, value) => {
-   document.getElementById(id).innerText = Math.round(value);
+   if(typeof value === 'number'){
+      value = Math.round(value);
+   }
+   document.getElementById(id).innerText = value;
 };
 
 // update delivery charge and total Tax
@@ -122,12 +125,13 @@ const updateTotal = () => {
 };
 
 // search by category
-document.getElementById("search-btn").addEventListener("click", function () {
-   console.log('search btn clicked')
+const search = ()=>{
+// console.log('search btn clicked')
    const inputField = document.getElementById("input-value").value;
    const inputValueLowercase = inputField.toLowerCase();
    const searchedProduct = arr[0].filter((p) =>
      p.title.toLowerCase().includes(inputValueLowercase)
    );
    showProducts(searchedProduct);
- });
+ };
+
