@@ -20,7 +20,7 @@ const showProducts = (products) => {
 
    const allProducts = products.slice(0, 10).map((pd) => pd);
    for (const product of allProducts) {
-      // console.log(product.image);
+      // console.log(product);
       const image = product.image;
       const div = document.createElement('div');
       div.classList.add('product');
@@ -45,8 +45,8 @@ let count = 0;
 
 const addToCart = (id, price) => {
    count = count + 1;
-   updatePrice('price', value);
-
+   updatePrice("price", price);
+   // console.log(updatePrice(id, price))
    updateTaxAndCharge();
    document.getElementById('total-Products').innerText = count;
 };
@@ -59,7 +59,7 @@ const showProductDetails = (product_id) => {
 };
 
 const showProductDetailsInModal = (product_details) => {
-   console.log(product_details);
+   // console.log(product_details);
    setInnerText('exampleModalLabel', product_details.title);
    setInnerText('product_id', product_details.id);
    setInnerText('modal_body', product_details.description);
@@ -68,6 +68,7 @@ const showProductDetailsInModal = (product_details) => {
 
 const getInputValue = (id) => {
    const element = document.getElementById(id).innerText;
+   // console.log(element)
    const converted = parseInt(element);
    return converted;
 };
