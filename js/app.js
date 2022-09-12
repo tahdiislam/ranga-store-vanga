@@ -123,11 +123,11 @@ const updateTotal = () => {
 
 // search by category
 document.getElementById("search-btn").addEventListener("click", function () {
+   console.log('search btn clicked')
    const inputField = document.getElementById("input-value").value;
-   const searchedProduct = arr[0].find((p) =>
-     p.category.startsWith(`${inputField}`)
+   const inputValueLowercase = inputField.toLowerCase();
+   const searchedProduct = arr[0].filter((p) =>
+     p.title.toLowerCase().includes(inputValueLowercase)
    );
    showProducts(searchedProduct);
  });
-
-
